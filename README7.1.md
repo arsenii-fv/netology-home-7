@@ -40,10 +40,40 @@
 Установите терраформ при помощи менеджера пакетов используемого в вашей операционной системе. 
 В виде результата этой задачи приложите вывод команды terraform --version.
 ````
+````
+vagrant@netology1:~$ terraform -v
+Terraform v1.1.2
+on linux_amd64
+
+Your version of Terraform is out of date! The latest version
+is 1.1.6. You can update by downloading from https://www.terraform.io/downloads.html
+````
 ### Задача 3. Поддержка легаси кода.
 ````
 В какой-то момент вы обновили терраформ до новой версии, например с 0.12 до 0.13. А код одного из проектов настолько устарел, 
 что не может работать с версией 0.13. В связи с этим необходимо сделать так, чтобы вы могли одновременно использовать
 последнюю версию терраформа установленную при помощи штатного менеджера пакетов и устаревшую версию 0.12.
 В виде результата этой задачи приложите вывод --version двух версий терраформа доступных на вашем компьютере или виртуальной машине.
+````
+````
+vagrant@netology1:/usr/local/tf116$ sudo wget https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_amd64.zip
+--2022-02-28 17:30:39--  https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_amd64.zip
+Resolving releases.hashicorp.com (releases.hashicorp.com)... 151.101.1.183, 151.101.65.183, 151.101.129.183, ...
+Connecting to releases.hashicorp.com (releases.hashicorp.com)|151.101.1.183|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 18751464 (18M) [application/zip]
+Saving to: ‘terraform_1.1.6_linux_amd64.zip’
+
+terraform_1.1.6_linux_amd64.zi 100%[====================================================>]  17.88M  16.6MB/s    in 1.1s
+
+2022-02-28 17:30:40 (16.6 MB/s) - ‘terraform_1.1.6_linux_amd64.zip’ saved [18751464/18751464]
+
+vagrant@netology1:/usr/local/tf116$ sudo unzip terraform_1.1.6_linux_amd64.zip
+Archive:  terraform_1.1.6_linux_amd64.zip
+  inflating: terraform
+vagrant@netology1:/usr/local/tf116$ sudo ln -s /usr/local/tf116/terraform /usr/bin/terraform116
+vagrant@netology1:/usr/local/tf116$ sudo chmod ugo+x /usr/bin/terraform*
+vagrant@netology1:/usr/local/tf116$ terraform116 -v
+Terraform v1.1.6
+on linux_amd64
 ````
