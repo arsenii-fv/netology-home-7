@@ -10,10 +10,10 @@ access_key     ****************TRW3 shared-credentials-file
 secret_key     ****************yRrm shared-credentials-file
     region                eu-west-3      config-file    ~/.aws/config
 ````
+### Задача 2. Создание aws ec2 или yandex_compute_instance через терраформ.
 ````
-
 1. При помощи Packer можно создать свой образ Ami, а Terraform разворачивает инстанс используя наш образ.
-
-[Ссылка на main](https://github.com/arsenii-fv/netology-home-7/blob/60051452a2d03aa95414337701e24bed256648f1/main.tf)
+````
+2. [Ссылка на main](https://github.com/arsenii-fv/netology-home-7/blob/60051452a2d03aa95414337701e24bed256648f1/main.tf)
 
 
