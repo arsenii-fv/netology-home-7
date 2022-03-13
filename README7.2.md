@@ -1,4 +1,16 @@
 ## Домашнее задание к занятию "7.2. Облачные провайдеры и синтаксис Terraform."
+
+### Задача 1 (вариант с AWS). Регистрация в aws и знакомство с основами (необязательно, но крайне желательно).
+````bash
+vagrant@netology1:~$ aws configure list
+      Name                    Value             Type    Location
+      ----                    -----             ----    --------
+   profile                <not set>             None    None
+access_key     ****************TRW3 shared-credentials-file
+secret_key     ****************yRrm shared-credentials-file
+    region                eu-west-3      config-file    ~/.aws/config
+````
+
 ````yaml
 terraform {
   required_providers {
@@ -51,5 +63,8 @@ output "internal_ip_address_virt_1" {
 output "external_ip_address_virt_1" {
   value = yandex_compute_instance.virt-1.network_interface.0.nat_ip_address
 }
+
+Packer создаем свой образ Ami,  Terraform разворачивает инстанс используя наш образю.
+
 
 ````
