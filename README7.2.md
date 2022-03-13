@@ -16,4 +16,4 @@ secret_key     ****************yRrm shared-credentials-file
 
 2. [Ссылка на main.tf] (https://github.com/arsenii-fv/netology-home-7/blob/60051452a2d03aa95414337701e24bed256648f1/main.tf)
 
-````
+
