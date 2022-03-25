@@ -7,7 +7,9 @@ vagrant@netology1:~/git_net7.2/devops-netology/terraform$ terraform workspace li
   prod
 * stage
 ````
-2.
+2. В связи с международными событиями регистрация в облаке Amazon с карт зарегитрированных на территории Российской Федерации 
+и Белоруссии заблокированна. На второй вопрос ответ предоставил в облаке yandex cloud но работу с workspaces yandex не поддерживает.
+Необходимо разделять воркспейсы по каталогам.
 ````yaml
 vagrant@netology1:~/git_net7.2/devops-netology/terraform/terraform.tfstate.d/prod$ terraform116 plan
 
