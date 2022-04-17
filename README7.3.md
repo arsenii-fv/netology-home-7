@@ -11,10 +11,22 @@ vagrant@netology1:~/git_net7.2/devops-netology/terraform$ terraform workspace li
 и Белоруссии заблокированна. На второй вопрос ответ предоставил в облаке yandex cloud но работу с workspaces yandex не поддерживает.
 Необходимо разделять воркспейсы по каталогам.
 ````yaml
-vagrant@netology1:~/git_net7.2/devops-netology/terraform/terraform.tfstate.d/prod$ terraform116 plan
 
-Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
-following symbols:
+vagrant@netology1:~/git_net7.2.-7.3/devops-netology/terraform/terraform.tfstate.d/prod$ vagrant@netology1:~/git_net7.2.-7.3/devops-netology/terraform/terraform.tfstate.d/prod$ terraform plan
+╷
+│ Error: Unsupported block type
+│
+│   on main.tf line 60, in resource "yandex_compute_instance" "virt-1":
+│   60:   lifecycle_rule {
+│
+│ Blocks of type "lifecycle_rule" are not expected here.
+╵
+vagrant@netology1:~/git_net7.2.-7.3/devops-netology/terraform/terraform.tfstate.d/prod$ mc
+
+vagrant@netology1:~/git_net7.2.-7.3/devops-netology/terraform/terraform.tfstate.d/prod$ terraform plan
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are
+indicated with the following symbols:
   + create
 
 Terraform will perform the following actions:
@@ -78,7 +90,8 @@ Terraform will perform the following actions:
         }
 
       + placement_policy {
-          + placement_group_id = (known after apply)
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
         }
 
       + resources {
@@ -151,7 +164,8 @@ Terraform will perform the following actions:
         }
 
       + placement_policy {
-          + placement_group_id = (known after apply)
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
         }
 
       + resources {
@@ -165,8 +179,8 @@ Terraform will perform the following actions:
         }
     }
 
-  # yandex_storage_bucket.bucket_stage will be created
-  + resource "yandex_storage_bucket" "bucket_stage" {
+  # yandex_storage_bucket.bucket_prod will be created
+  + resource "yandex_storage_bucket" "bucket_prod" {
       + access_key         = "AJERoM3ckBUlOTxl_xpxMji"
       + acl                = "private"
       + bucket             = "arseny"
@@ -180,24 +194,24 @@ Terraform will perform the following actions:
       + lifecycle_rule {
           + enabled = true
           + id      = "log"
-          + prefix  = "terraform.tfstate.d/stage"
+          + prefix  = "terraform.tfstate.d/prod"
 
           + expiration {
               + days = 90
             }
 
+          + noncurrent_version_expiration {
+              + days = 365
+            }
+
+          + noncurrent_version_transition {
+              + days          = 0
+              + storage_class = "COLD"
+            }
+
           + transition {
               + days          = 30
               + storage_class = "COLD"
-            }
-        }
-      + lifecycle_rule {
-          + enabled = true
-          + id      = "stage"
-          + prefix  = "terraform.tfstate.d/stage"
-
-          + expiration {
-              + date = "2022-03-21"
             }
         }
 
@@ -266,9 +280,9 @@ Changes to Outputs:
   + internal_ip_address_virt_1 = (known after apply)
   + internal_ip_address_virt_2 = (known after apply)
 
-───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────────────
 
-Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you
-run "terraform apply" now.
-vagrant@netology1:~/git_net7.2/devops-netology/terraform/terraform.tfstate.d/prod$
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly
+these actions if you run "terraform apply" now.
+vagrant@netology1:~/git_net7.2.-7.3/devops-netology/terraform/terraform.tfstate.d/prod$
 ````
