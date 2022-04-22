@@ -286,3 +286,10 @@ Note: You didn't use the -out option to save this plan, so Terraform can't guara
 these actions if you run "terraform apply" now.
 vagrant@netology1:~/git_net7.2.-7.3/devops-netology/terraform/terraform.tfstate.d/prod$
 ````
+````
+При создании инстанса, задается параметр жизненного цикла
+ lifecycle {
+    prevent_destroy = true #предотвращение удаления
+    create_before_destroy = true # создание перед удалением
+  }
+````
